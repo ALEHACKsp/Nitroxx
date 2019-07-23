@@ -6,15 +6,9 @@ import requests
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
-get_cwd = lambda: os.path.dirname(sys.executable) if hasattr(sys, 'frozen') else os.path.dirname(os.path.realpath(sys.argv[0]))
-
-print("Nitroxx - Discord Nitro Brute Forcer")
-print("                       Coded By M47Z\n")
-
 index = 0
 fstring = ""
-cwd = get_cwd()
-
+cwd = os.path.dirname(sys.executable) if hasattr(sys, 'frozen') else os.path.dirname(os.path.realpath(sys.argv[0]))
 f = open("NitroCodes.txt", "a")
 chrome_options = webdriver.ChromeOptions()
 
@@ -36,20 +30,27 @@ def check(string):
         return True
     return False
 
+print("Nitroxx - Discord Nitro Brute Forcer")
+print("                       Coded By M47Z\n")
+
 amount = int(input("How many codes should be generated?: "))
+
 print("\nOpening Chrome...")
+
 chrome_options.add_argument("--disable-notification")
 chrome_options.add_argument("--force-dark-mode")
 chrome_options.add_argument("--window-size=1920,1080")
-
 driver = webdriver.Chrome(options=chrome_options, executable_path="{}/chromedriver.exe".format(cwd))
+
 driver.maximize_window()
 
 print("\nGenerating...\n")
+
 while amount > 0:
     code = gen()
     print("Testing Code: {} Attempt Number {}".format(code, index), end="\r")
     if check(code):
         fstring += "https://discordapp.com/gifts/{}\n".format(code)
         amount -= 1
+        
 f.write(fstring)
