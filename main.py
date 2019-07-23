@@ -38,6 +38,7 @@ amount = int(input("How many codes should be generated?: "))
 print("\nOpening Chrome...")
 
 chrome_options.add_argument("--disable-notification")
+chrome_options.add_argument("--log-level=OFF")
 chrome_options.add_argument("--force-dark-mode")
 chrome_options.add_argument("--window-size=1920,1080")
 driver = webdriver.Chrome(options=chrome_options, executable_path="{}/chromedriver.exe".format(cwd))
