@@ -6,17 +6,17 @@ import requests
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
+get_cwd = lambda: os.path.dirname(sys.executable) if hasattr(sys, 'frozen') else os.path.dirname(os.path.realpath(sys.argv[0]))
+
 print("Nitroxx - Discord Nitro Brute Forcer")
 print("                       Coded By M47Z\n")
 
-amount = input("How many codes should be generated?: ")
-amount = int(amount)
 index = 0
-get_cwd = lambda: os.path.dirname(sys.executable) if hasattr(sys, 'frozen') else os.path.dirname(os.path.realpath(sys.argv[0]))
+fstring = ""
 cwd = get_cwd()
+
 f = open("NitroCodes.txt", "a")
 chrome_options = webdriver.ChromeOptions()
-fstring = ""
 
 def gen():
     global index
@@ -36,6 +36,7 @@ def check(string):
         return True
     return False
 
+amount = int(input("How many codes should be generated?: "))
 print("\nOpening Chrome...")
 chrome_options.add_argument("--disable-notification")
 chrome_options.add_argument("--force-dark-mode")
